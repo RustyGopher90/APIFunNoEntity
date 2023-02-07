@@ -53,7 +53,7 @@ namespace APIFunNoEntity.Controllers
 
         private async IAsyncEnumerable<People> SinglePerson(string firstname, string lastname)
         {
-            await using var connection = new MySqlConnection("Server=127.0.0.1;User ID=app_people_api;Password=P$5TR^7ytdc@#1f5$3;Database=api");
+            await using var connection = new MySqlConnection(_myconifg.ConnectionString);
             await connection.OpenAsync();
 
             using var command = new MySqlCommand("SELECT FirstName, LastName, DOB, Email FROM people where Firstname like @firstname and LastName like @lastname;", connection);
